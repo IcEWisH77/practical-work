@@ -39,9 +39,8 @@ cd task3_django_greeting
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
-Затем открыть http://127.0.0.1:8000/.
-
-
+Затем открыть http://127.0.0.1:8000/
+```
 ### 2.4. Задача № 4. Интерактивный калькулятор (HTML/CSS/JS)
 Веб-приложение с двумя инпутами и четырьмя кнопками математических операций.
 Реализовано:
