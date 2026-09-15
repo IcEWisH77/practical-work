@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Приветствие</title>
+<style>
+  body {
+    margin: 0; height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: Arial, sans-serif;
+  }
+  .card {
+    background: white; padding: 40px; border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    width: 350px; text-align: center;
+  }
+  h1 { color: #333; }
+  input {
+    width: 100%; padding: 12px; margin: 15px 0;
+    border: 2px solid #ddd; border-radius: 8px;
+    font-size: 16px; box-sizing: border-box;
+  }
+  input:focus { border-color: #667eea; outline: none; }
+  button {
+    width: 100%; padding: 12px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white; border: none; border-radius: 8px;
+    font-size: 18px; cursor: pointer;
+  }
+  button:hover { opacity: .9; }
+  .error { color: red; margin-top: 15px; }
+  .greeting { color: #667eea; font-size: 24px; margin-top: 20px; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Приветствие</h1>
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" name="name" placeholder="Введите ваше имя" maxlength="100">
+      <button type="submit">Submit</button>
+    </form>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    {% if greeting %}<p class="greeting">Привет, {{ greeting }}!</p>{% endif %}
+  </div>
+</body>
+</html>
