@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Counter</title>
+<style>
+  body {
+    margin: 0; height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: Arial, sans-serif;
+  }
+  .counter { text-align: center; }
+  #result {
+    font-size: 80px; width: 150px; height: 150px; line-height: 150px;
+    margin: 0 auto 30px; background: #fff; border-radius: 20px;
+    transition: background .3s;
+  }
+  .buttons { display: flex; gap: 20px; justify-content: center; }
+  button {
+    width: 80px; height: 80px; font-size: 40px; border: none;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    color: white; cursor: pointer; transition: opacity .3s;
+  }
+  button:disabled { opacity: .4; cursor: not-allowed; }
+  #message { margin-top: 20px; font-size: 20px; color: white; height: 30px; }
+</style>
+</head>
+<body>
+  <div class="counter">
+    <div id="result">0</div>
+    <div class="buttons">
+      <button id="minus">−</button>
+      <button id="plus">+</button>
+    </div>
+    <div id="message"></div>
+  </div>
+
+<script>
+  const resultEl = document.getElementById('result');
+  const plusBtn  = document.getElementById('plus');
+  const minusBtn = document.getElementById('minus');
+  const msgEl    = document.getElementById('message');
+  let count = 0;
+
+  function updateUI() {
+    resultEl.textContent = count;
+
+    if (count > 0)      resultEl.style.background = 'yellow';
+    else if (count < 0) resultEl.style.background = 'green';
+    else                resultEl.style.background = 'red';
+
+    plusBtn.disabled  = count >= 10;
+    minusBtn.disabled = count <= -10;
+
+    msgEl.textContent = (count === 10 || count === -10)
+      ? 'Вы достигли экстремального значения'
+      : '';
+  }
+
+  plusBtn.addEventListener('click',  () => { count++; updateUI(); });
+  minusBtn.addEventListener('click', () => { count--; updateUI(); });
+
+  updateUI();
+</script>
+</body>
+</html>
